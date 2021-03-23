@@ -4,6 +4,6 @@
 	<meta name="author" content="Xslash">
 </head>
 <body style="background-color:grey;">
-	<iframe src="https://discord.com/widget?id=778306535624540181&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+	<h1>test</h1>
 </body>
 </html>
