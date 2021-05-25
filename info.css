@@ -1,0 +1,39 @@
+body{
+    background-image: url("assets/index/back2.png");
+    background-size: 3080px;
+}
+
+#OfficialTitle{
+    font-size: 30;
+    text-align: left;
+    color: rgb(43, 255, 96);
+}
+
+#title{
+    text-align: center;
+    color: rgb(0, 195, 0);
+    font-weight: 400;
+    font-size: 25;
+}
+#description {
+    background-color: green;
+    font-size: 25px;
+    font-family: Cursive;
+    color: white;
+    list-style:decimal;
+    min-height: 620px;
+}
+#description ul{
+    list-style: none;
+}
+h3{
+    font-weight: normal;
+}
+#description ul ul{
+    list-style: decimal;
+}
+#description li li{
+    font-size: 30;
+    width: 1050;
+    min-width: 1050;
+}

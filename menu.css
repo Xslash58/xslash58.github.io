@@ -1,0 +1,24 @@
+#Menu ul {
+    background-color: #333;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+#Menu li {
+    display: inline;
+    float: left;
+}
+#Menu li a{
+      display: block;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      padding: 14px 16px;
+ }
+#Menu li a:hover{
+    background-color: #111;
+}
+body{
+    background-color: gray;
+}
