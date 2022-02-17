@@ -1,0 +1,10 @@
+[Basic]
+Name="Test <color=#FFFF00> REWORK"
+Description="Reworked version of default test map of cube fight. Fixing several bugs :D \nEnjoy!"
+Author=ekseslasz
+type=map
+
+[Map]
+File=cfc_test_rework.cfmap
+Gamemode=Deathmatch
+MapSize=35,5x15

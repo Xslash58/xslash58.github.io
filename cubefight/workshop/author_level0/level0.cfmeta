@@ -1,0 +1,14 @@
+[Basic]
+Name = <color=yellow><u><color=purple>Template <color=green>Custom <color=blue>Map
+Description = Very interesting and emotional description. You can use<br>to emulate enter, and even use <color=red><b>Text Mesh Pro</b></color> <b><color=yellow>Formatting</color></b> Have Fun :D
+Author = Who?
+type=map
+
+[Map]
+File = level0.cfmap
+Gamemode = You can create custom gamemodes!
+#For example 15x30 (15 in x and 30 in y)
+MapSize = 30x15
+
+[AdditionalSettings]
+LockCamera=true
