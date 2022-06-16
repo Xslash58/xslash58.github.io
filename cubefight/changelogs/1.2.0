@@ -1,0 +1,30 @@
+Hey again! :D
+
+This update brings a lot of changes, bug fixes, and additions. The main additions are lasers! Which you can adjust in settings from the lobby. Additionally, you now don't have to forward ports, or use for example hamachi! Cube Fight is using UPnP from now which will allow you to just press host, send IP to your friend, and here you go! If your router of course supports that (most are). Okay UPnP aside, a new map Skyscape is added too! That's it from me, full changelog here it is:  
+
+- Added lasers
+- Badge system rework
+- Multiple badges support
+- Server-side badges
+- Console commands rework (check 'help')
+- Changed loading screen
+- Smoother menu loading
+- AdminGUI added (M)
+- Bans system (Global, IP, DiscordId)
+- New shooting system
+- Added translations support
+- New Credits panel
+- Discord-only servers
+- Ability to start the game without hooking to Discord ('-nodiscord' launch argument)
+- Heal powerup buff (10-30HP)
+- Changed map 'Test' name to 'Amitylack'
+- Added new map 'Skyscape'
+- Added Server Config and removed it from settings
+- Fixed ghost players spawning of fast reconnect
+- Fixed 'Game in progress' bug again (finally)
+- Fixed camera not starting on game start
+- Players in the lobby now spawn on the floor and not in the air
+- Players now won't spawn above the void, in the air, or in a wall
+- UPnP support added (if your router supports that, you can play without port forwarding! Just host, give your IP to a friend and play!)
+- Ability to start game without UPnP support ('-noupnp' launch argument)
+- Changed how respawn works
