@@ -1,0 +1,2 @@
+version=1.2.0
+downloadUrl=https://download1474.mediafire.com/4s79otc0byug/qz7l4jtvdfexs7e/BETA+1.2.0.zip
