@@ -1,0 +1,83 @@
+/* CONTENT */
+
+.content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 85vh;
+}
+
+/* FOOTER */
+
+.footer {
+    font-size: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.socials {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+/* PAINT PREVIEW */
+
+.paint-preview {
+    display: flex;
+}
+
+.paint-preview * {
+    margin: 0px;
+    padding: 0px;
+}
+
+.paint-background {
+    text-align: center;
+    background-image: url('https://media.tenor.com/ERIEL8E9AI0AAAAC/colour-colors.gif');
+    background-size: 100% 100%;
+    
+    -webkit-text-fill-color: transparent;
+    background-clip: text!important;
+    -webkit-background-clip: text!important;
+    font-weight: 700;
+}
+
+/* GLOBALS */
+
+body {
+    background-color: #191919;
+}
+
+p, h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h4 {
+    color: white;
+    font-size: 10px;
+    padding: 2px;
+    margin: 0px;
+}
+
+input {
+    background-color: #191919;
+    border: 2px solid gray;
+    color: white;
+}
+input:focus {
+    border: 2px solid red;
+    outline: none;
+}
+
+button {
+    background-color: #191919;
+    border: 2px solid gray;
+    color: white;
+}
+button:hover {
+    border: 2px solid red;
+}

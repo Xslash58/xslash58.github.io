@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Paint Preview</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='icon' href="favicon-32x32.png">
+</head>
+
+<body>
+    <div class="content">
+        <h4>Generated paint:</h4>
+        <div class="paint-previewer">
+            <div class="paint-preview">
+                <div class="paint-background">
+                    <p id="paint-username">turtegbot</p>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="username-changer">
+            <h4>Change username</h4>
+            <input type="text" id="input-paint-username">
+            <button onclick="submitUsername()">Submit</button>
+        </div>
+
+        <div class="json-changer">
+            <h4>Have your own JSON?</h4>
+            <input type="text" id="input-paint-json">
+            <button onclick="submitJSON()">Submit</button>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Site made by <a href="https://twitch.tv/xslash58">Xslash</a></p>
+        <div class="socials">
+            <img height="16px" src="/assets/Twitch_Glitch_Logo_White.png">
+            <img height="16px" src="/assets/github-mark-white.png">
+            <img height="16px" src="/assets/discord-mark-white.png">
+        </div>
+    </div>
+</body>
+
+<script src='main.js'></script>
+
+</html>
