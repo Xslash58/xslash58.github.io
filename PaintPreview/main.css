@@ -82,6 +82,10 @@ input:focus {
     outline: none;
 }
 
+.json-copy > button {
+    width: 455px !important;
+}
+
 button {
     background-color: #191919;
     border: 4px solid gray;

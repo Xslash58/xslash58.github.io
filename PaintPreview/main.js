@@ -1,3 +1,5 @@
+let jsonParam = "";
+
 const DecimalToStringRGBA = (num) => {
     const r = (num >>> 24) & 0xff;
     const g = (num >>> 16) & 0xff;
@@ -13,11 +15,18 @@ const DecimalToStringRGB = (num) => {
 
     return `rgb(${r}, ${g}, ${b})`;
 };
+function generateRandomUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0,
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
 
 async function main() {
     const urlParams = new URLSearchParams(window.location.search);
     const nickParam = urlParams.get('username');
-    let jsonParam = urlParams.get('json');
+    jsonParam = urlParams.get('json');
     const idParam = urlParams.get('id');
 
     if (idParam !== null) {
@@ -71,6 +80,9 @@ async function main() {
         let paintJson = tempJson["data"]["cosmetics"]["paints"][0];
 
         let json = {
+            "id": `${generateRandomUUID()}`,
+            "kind": "PAINT",
+            "provider": "7TV",
             "data": {
                 "name": paintJson["name"] ? paintJson["name"] : null,
                 "function": paintJson["function"] ? paintJson["function"] : null,
@@ -160,6 +172,14 @@ function submitUsername() {
     urlParams.set('username', username)
 
     window.location.href = `?${urlParams}`;
+}
+async function copyJSON() {
+
+    await navigator.clipboard.writeText(jsonParam).then(
+        () => { alert("JSON copied! Now import it into 7TV Extension Paint Tool!") },
+        () => { alert("Something went wrong.") }
+    );
+    //alert("JSON copied! Now import it into 7TV Extension Paint Tool!")
 }
 
 main();
