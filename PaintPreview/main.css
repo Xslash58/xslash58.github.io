@@ -11,17 +11,20 @@
 /* FOOTER */
 
 .footer {
-    font-size: 10px;
+    font-size: 20px;
     color: white;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+.footer > p {
+    font-size: 20px;
+}
 .socials {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 10px;
+    gap: 20px;
 }
 
 /* PAINT PREVIEW */
@@ -56,28 +59,36 @@ p, h4 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+p {
+    font-size: 32px;
+}
+
 h4 {
     color: white;
-    font-size: 10px;
+    font-size: 20px;
     padding: 2px;
     margin: 0px;
 }
 
 input {
     background-color: #191919;
-    border: 2px solid gray;
+    border: 4px solid gray;
     color: white;
+    height: 30px;
+    width: 400px;
 }
 input:focus {
-    border: 2px solid red;
+    border: 4px solid red;
     outline: none;
 }
 
 button {
     background-color: #191919;
-    border: 2px solid gray;
+    border: 4px solid gray;
     color: white;
+    height: 40px;
+    width: 40px;
 }
 button:hover {
-    border: 2px solid red;
+    border: 4px solid red;
 }
