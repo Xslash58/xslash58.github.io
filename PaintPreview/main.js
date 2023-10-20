@@ -17,7 +17,74 @@ const DecimalToStringRGB = (num) => {
 async function main() {
     const urlParams = new URLSearchParams(window.location.search);
     const nickParam = urlParams.get('username');
-    const jsonParam = urlParams.get('json');
+    let jsonParam = urlParams.get('json');
+    const idParam = urlParams.get('id');
+
+    if (idParam !== null) {
+        let request = await fetch('https://7tv.io/v3/gql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                query: `
+          query GetCosmestics($list: [ObjectID!]) {
+            cosmetics(list: $list) {
+              paints {
+                id
+                kind
+                name
+                function
+                color
+                angle
+                shape
+                image_url
+                repeat
+                stops {
+                  at
+                  color
+                }
+                shadows {
+                  x_offset
+                  y_offset
+                  radius
+                  color
+                }
+              }
+              badges {
+                id
+                kind
+                name
+                tooltip
+                tag
+              }
+            }
+          }
+            `,
+                variables: {
+                    list: [idParam],
+                },
+            }),
+        });
+
+        let tempJson = await request.json();
+        let paintJson = tempJson["data"]["cosmetics"]["paints"][0];
+
+        let json = {
+            "data": {
+                "name": paintJson["name"] ? paintJson["name"] : null,
+                "function": paintJson["function"] ? paintJson["function"] : null,
+                "color": paintJson["color"] ? paintJson["color"] : null,
+                "angle": paintJson["angle"] ? paintJson["angle"] : null,
+                "shape": paintJson["shape"] ? paintJson["shape"] : null,
+                "image_url": paintJson["image_url"] ? paintJson["image_url"] : null,
+                "repeat": paintJson["repeat"],
+                "stops": paintJson["stops"],
+                "shadows": paintJson["shadows"]
+            }
+        };
+        jsonParam = JSON.stringify(json);
+    }
 
     loadPaint(jsonParam, nickParam);
 }
