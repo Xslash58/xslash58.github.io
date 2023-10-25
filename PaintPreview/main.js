@@ -101,8 +101,8 @@ async function main() {
             "data": {
                 "name": paintJson["name"] ? paintJson["name"] : null,
                 "function": paintJson["function"] ? paintJson["function"] : null,
-                "color": paintJson["color"] ? paintJson["color"] : null,
-                "angle": paintJson["angle"] ? paintJson["angle"] : null,
+                "color": paintJson["color"] ? paintJson["color"] : 0,
+                "angle": paintJson["angle"] ? paintJson["angle"] : 0,
                 "shape": paintJson["shape"] ? paintJson["shape"] : null,
                 "image_url": paintJson["image_url"] ? paintJson["image_url"] : null,
                 "repeat": paintJson["repeat"],
