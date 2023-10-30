@@ -12,39 +12,19 @@
 
 <body>
     <div class="content">
-        <h4>Generated paint:</h4>
+        <h1>All Badges:</h1>
+        <div class="badges-preview">
+        </div>
+
+        <h1>All Paints:</h1>
         <div class="paint-previewer">
-            <div class="paint-preview">
-                <div class="paint-background">
+            <input type="text" id="input-paint-id" placeholder="Enter ID...">
+            <button onclick="submitID()">></button>
+            <div class="paints-preview">
+                <div class="paint-background" id="placeholder-loading">
                     <p id="paint-username">Loading...</p>
                 </div>
             </div>
-        </div>
-
-        <br><br><br>
-
-        <div class="username-changer">
-            <h4>Change username</h4>
-            <input type="text" id="input-paint-username">
-            <button onclick="submitUsername()">></button>
-        </div>
-
-        <div class="id-changer">
-            <h4>Change Paint</h4>
-            <button onclick="window.location.href='/CosmeticsShowcase'" id="allpaints">View all paints</button>
-            <!--<input type="text" id="input-paint-id">
-            <button onclick="submitID()">></button>-->
-        </div>
-
-        <!--<div class="json-changer">
-            <h4>Have your own JSON?</h4>
-            <input type="text" id="input-paint-json">
-            <button onclick="submitJSON()">></button>
-        </div>-->
-
-        <div class="json-copy">
-            <h4>Want to import into 7TV Paint Tool?</h4>
-            <button onclick="copyJSON()">Copy JSON</button>
         </div>
     </div>
     <div class="footer">

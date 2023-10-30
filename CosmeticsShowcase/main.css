@@ -1,23 +1,43 @@
-/* OVERLAY */
-.navigation-overlay {
-    position: s;
-    z-index: 2;
-}
-
 /* CONTENT */
 
 .content {
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    /*justify-content: center;*/
     height: 85vh;
-    row-gap: 5px;
+}
+
+.badges-preview {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 80vw;
+}
+.badge {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 120px;
+    justify-content: center;
+    height: 120px;
+}
+.badge p {
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    text-align: center;
+    width: 100%;
 }
 
 /* FOOTER */
 
 .footer {
+    position: fixed;
+    bottom: 5pt;
+    left: 1vw;
     font-size: 20px;
     color: white;
     display: flex;
@@ -36,11 +56,22 @@
 
 /* PAINT PREVIEW */
 
-.paint-preview {
-    display: flex;
+.paint-previewer {
+    text-align: center;
 }
 
-.paint-preview * {
+.paints-preview {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 150px;
+    padding-top: 20px;
+}
+
+.paints-preview * {
     margin: 0px;
     padding: 0px;
 }
@@ -70,11 +101,15 @@ p {
     font-size: 32px;
 }
 
-h4 {
+h1 {
     color: white;
-    font-size: 20px;
-    padding: 2px;
-    margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 35px;
+    padding: 5px;
+    text-align: center;
+    width: 20vw;
+    border-bottom: 1px solid white;
+    margin: 10px;
 }
 
 input {
@@ -89,7 +124,6 @@ input:focus {
     outline: none;
 }
 
-.id-changer > button#allpaints,
 .json-copy > button {
     width: 455px !important;
 }

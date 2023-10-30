@@ -139,7 +139,7 @@ function loadPaint(jsonParam, username) {
 
         let gradientStyle = "";
         if (imageUrl)
-            gradientStyle = `url(${imageUrl})`;
+            gradientStyle = `url(${imageUrl.trim()})`;
         else if (json["data"]["function"] == "RADIAL_GRADIENT")
             gradientStyle = `${functionName}${json["data"]["function"].replaceAll("_", "-")}(${json["data"]["shape"]}, ${json["data"]["stops"].map(x =>
                 `${DecimalToStringRGB(x["color"])} ${Math.round(x["at"] * 100)}%`
