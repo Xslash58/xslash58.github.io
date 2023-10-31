@@ -22,6 +22,7 @@
     width: 120px;
     justify-content: center;
     height: 120px;
+    align-items: center;
 }
 .badge p {
     font-size: 16px;
@@ -30,6 +31,11 @@
     color: white;
     text-align: center;
     width: 100%;
+}
+.badge#selected {
+    outline-style: dashed;
+    outline-color: gray;
+    outline-width: 2px;
 }
 
 /* FOOTER */
@@ -85,6 +91,12 @@
     background-clip: text!important;
     -webkit-background-clip: text!important;
     font-weight: 700;
+}
+.paint-background#selected {
+    outline-style: dashed;
+    outline-color: gray;
+    outline-width: 2px;
+    outline-offset: 7px;
 }
 
 /* GLOBALS */

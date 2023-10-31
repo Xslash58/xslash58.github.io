@@ -26,6 +26,8 @@ async function main() {
     let nickParam = urlParams.get('username');
     let seventvid = urlParams.get('7tvid');
 
+    let selectedPaint = undefined;
+    let selectedBadge = undefined;
     let requestVariables = {};
     if (seventvid !== null) {
         let request = await fetch('https://7tv.io/v3/gql', {
@@ -39,6 +41,8 @@ async function main() {
                     user(id: $id) {
                         cosmetics {
                             id
+                            kind
+                            selected
                         }
                     }
                 }
@@ -54,6 +58,9 @@ async function main() {
         }
 
         let cosmeticsJson = tempJson["data"]["user"]["cosmetics"];
+
+        selectedBadge = cosmeticsJson.find(x => x["selected"] == true && x["kind"] == "BADGE");
+        selectedPaint = cosmeticsJson.find(x => x["selected"] == true && x["kind"] == "PAINT");
 
         let cosmetics = [];
         cosmeticsJson.forEach(x => cosmetics.push(x["id"]));
@@ -155,17 +162,20 @@ async function main() {
         paintsJsonParam = JSON.stringify(json);
     }
 
-    loadBadges(badgesJson);
-    loadPaints(paintsJsonParam, nickParam);
+    loadBadges(badgesJson, selectedBadge);
+    loadPaints(paintsJsonParam, selectedPaint, nickParam);
 }
 
-function loadBadges(json) {
+function loadBadges(json, selectedBadge) {
     if (json === null)
         return;
 
     json.forEach(x => {
         var badge = document.createElement("div");
         badge.className = "badge";
+
+        if (selectedBadge !== undefined && x["id"] == selectedBadge["id"])
+            badge.id = "selected";
 
         var img = document.createElement("img");
         img.height = 72;
@@ -184,7 +194,7 @@ function loadBadges(json) {
         document.getElementsByClassName("badges-preview")[0].appendChild(badge);
     });
 }
-function loadPaints(jsonParam, username) {
+function loadPaints(jsonParam, selectedPaint, username) {
     let json = null;
 
     try {
@@ -200,6 +210,10 @@ function loadPaints(jsonParam, username) {
         json.forEach(x => {
             var paintBackground = document.createElement("div");
             paintBackground.className = "paint-background";
+
+            if (selectedPaint !== undefined && x["paintId"] == selectedPaint["id"])
+                paintBackground.id = "selected";
+
             var paintUsername = document.createElement("p");
             paintUsername.className = "paint-username";
             paintUsername.addEventListener("click", () => {
