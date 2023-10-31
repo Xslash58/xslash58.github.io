@@ -24,6 +24,42 @@ function generateRandomUUID() {
 async function main() {
     const urlParams = new URLSearchParams(window.location.search);
     let nickParam = urlParams.get('username');
+    let seventvid = urlParams.get('7tvid');
+
+    let requestVariables = {};
+    if (seventvid !== null) {
+        let request = await fetch('https://7tv.io/v3/gql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                query: `
+                query GetUserCosmetics($id: ObjectID!) {
+                    user(id: $id) {
+                        cosmetics {
+                            id
+                        }
+                    }
+                }
+                `,
+                variables: { id: seventvid }
+            }),
+        });
+
+        let tempJson = await request.json();
+        if (tempJson["errors"]) {
+            document.getElementById("paint-username").innerHTML = `GQL ERROR: ${tempJson["errors"][0]["message"]}`;
+            return;
+        }
+
+        let cosmeticsJson = tempJson["data"]["user"]["cosmetics"];
+
+        let cosmetics = [];
+        cosmeticsJson.forEach(x => cosmetics.push(x["id"]));
+
+        requestVariables = { list: cosmetics };
+    }
 
     let request = await fetch('https://7tv.io/v3/gql', {
         method: 'POST',
@@ -67,7 +103,7 @@ async function main() {
             }
           }
             `,
-            variables: {},
+            variables: requestVariables
         }),
     });
 
