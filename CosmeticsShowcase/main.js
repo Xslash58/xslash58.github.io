@@ -25,6 +25,7 @@ async function main() {
     const urlParams = new URLSearchParams(window.location.search);
     let nickParam = urlParams.get('username');
     let seventvid = urlParams.get('7tvid');
+    let twitchId = urlParams.get('twitchid');
 
     let selectedPaint = undefined;
     let selectedBadge = undefined;
@@ -164,6 +165,11 @@ async function main() {
 
     loadBadges(badgesJson, selectedBadge);
     loadPaints(paintsJsonParam, selectedPaint, nickParam);
+    loadFFZBadges(twitchId);
+    loadBTTVBadges(twitchId);
+    loadChatterinoBadges(twitchId);
+    //loadChatterinoHomiesBadges(twitchId);
+    //loadChatterinoHomiesBadges(twitchId, true);
 }
 
 function loadBadges(json, selectedBadge) {
@@ -260,6 +266,242 @@ function loadPaints(jsonParam, selectedPaint, username) {
         document.getElementById("paint-username").innerHTML = "Invalid JSON provided."
         return;
     }
+}
+async function loadFFZBadges(twitchId) {
+    let request = await fetch('https://api.frankerfacez.com/v1/badges/ids', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    let json = await request.json();
+
+    let badges = json["badges"];
+    let users = json["users"];
+
+    if (twitchId == undefined) {
+        for (const key in badges) {
+            var badge = document.createElement("div");
+            badge.className = "badge";
+
+
+            var img = document.createElement("img");
+            img.height = 72;
+            img.width = 72;
+            img.src = `${badges[key]["urls"]["4"]}`;
+            img.style["backgroundColor"] = badges[key]["color"];
+
+            img.addEventListener("click", () => {
+                window.location.href = `${badges[key]["urls"]["4"]}`;
+            }, false);
+
+            var p = document.createElement("p");
+            p.textContent = badges[key]["title"];
+
+            badge.appendChild(img);
+            badge.appendChild(p);
+            tryCreateCategory("Other");
+            document.getElementsByClassName("Other-badges-preview")[0].appendChild(badge);
+        }
+        return;
+    }
+
+    let badgeIds = [];
+    for (const key in users) {
+        if (Array.isArray(users[key]))
+            if (users[key].includes(Number(twitchId))) {
+                badgeIds.push(Number(key));
+                break;
+            }
+    }
+
+    for (const key in badges) {
+        if (badgeIds.includes(badges[key]["id"])) {
+            var badge = document.createElement("div");
+            badge.className = "badge";
+
+
+            var img = document.createElement("img");
+            img.height = 72;
+            img.width = 72;
+            img.src = `${badges[key]["urls"]["4"]}`;
+            img.style["backgroundColor"] = badges[key]["color"];
+
+            img.addEventListener("click", () => {
+                window.location.href = `${badges[key]["urls"]["4"]}`;
+            }, false);
+
+            var p = document.createElement("p");
+            p.textContent = badges[key]["title"];
+
+            badge.appendChild(img);
+            badge.appendChild(p);
+            tryCreateCategory("Other");
+            document.getElementsByClassName("Other-badges-preview")[0].appendChild(badge);
+        }
+    }
+
+}
+async function loadBTTVBadges(twitchId) {
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    let request = await fetch("https://api.betterttv.net/3/cached/badges/twitch", requestOptions)
+
+    let json = await request.json();
+
+    if (twitchId == undefined) {
+        let rendered = [];
+
+        for (const key in json) {
+            if (!rendered.includes(json[key]["badge"]["type"])) {
+                var badge = document.createElement("div");
+                badge.className = "badge";
+
+
+                var img = document.createElement("img");
+                img.height = 72;
+                img.width = 72;
+                img.src = `${json[key]["badge"]["svg"]}`;
+                img.style["backgroundColor"] = json[key]["color"];
+
+                img.addEventListener("click", () => {
+                    window.location.href = `${json[key]["badge"]["svg"]}`;
+                }, false);
+
+                var p = document.createElement("p");
+                p.textContent = json[key]["badge"]["description"];
+
+                badge.appendChild(img);
+                badge.appendChild(p);
+                tryCreateCategory("Other");
+                document.getElementsByClassName("Other-badges-preview")[0].appendChild(badge);
+                rendered.push(json[key]["badge"]["type"]);
+            }
+        }
+        return;
+    }
+
+    for (const key in json) {
+        if (json[key]["providerId"] == twitchId) {
+            var badge = document.createElement("div");
+            badge.className = "badge";
+
+
+            var img = document.createElement("img");
+            img.height = 72;
+            img.width = 72;
+            img.src = `${json[key]["badge"]["svg"]}`;
+            img.style["backgroundColor"] = json[key]["color"];
+
+            img.addEventListener("click", () => {
+                window.location.href = `${json[key]["badge"]["svg"]}`;
+            }, false);
+
+            var p = document.createElement("p");
+            p.textContent = json[key]["badge"]["description"];
+
+            badge.appendChild(img);
+            badge.appendChild(p);
+            tryCreateCategory("Other");
+            document.getElementsByClassName("Other-badges-preview")[0].appendChild(badge);
+        }
+    }
+}
+async function loadChatterinoBadges(twitchId) {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    let request = await fetch("https://api.chatterino.com/badges", requestOptions)
+
+    let json = await request.json();
+    let badges = json["badges"];
+
+    for (const key in badges) {
+        if (badges[key]["users"].includes(twitchId) || twitchId == undefined) {
+            var badge = document.createElement("div");
+            badge.className = "badge";
+
+
+            var img = document.createElement("img");
+            img.height = 72;
+            img.width = 72;
+            img.src = `${badges[key]["image3"]}`;
+
+            img.addEventListener("click", () => {
+                window.location.href = `${badges[key]["image3"]}`;
+            }, false);
+
+            var p = document.createElement("p");
+            p.textContent = badges[key]["tooltip"];
+
+            badge.appendChild(img);
+            badge.appendChild(p);
+
+            tryCreateCategory("Other");
+            document.getElementsByClassName("Other-badges-preview")[0].appendChild(badge);
+        }
+    }
+}
+async function loadChatterinoHomiesBadges(twitchId, personal) {
+    var requestOptions = {
+        method: 'GET'
+    };
+
+    let request = await fetch("https://itzalex.github.io/badges" + (personal ? "2" : ""), requestOptions)
+
+    let json = await request.json();
+    let badges = json["badges"];
+
+    for (const key in badges) {
+        if (badges[key]["users"].includes(twitchId) || twitchId == undefined) {
+            var badge = document.createElement("div");
+            badge.className = "badge";
+
+
+            var img = document.createElement("img");
+            img.height = 72;
+            img.width = 72;
+            img.src = `${badges[key]["image3"]}`;
+
+            img.addEventListener("click", () => {
+                window.location.href = `${badges[key]["image3"]}`;
+            }, false);
+
+            var p = document.createElement("p");
+            p.textContent = badges[key]["tooltip"] + " [Chatterino Homies]";
+
+            badge.appendChild(img);
+            badge.appendChild(p);
+            tryCreateCategory("other");
+            document.getElementsByClassName("other-badges-preview")[0].appendChild(badge);
+        }
+    }
+}
+
+function tryCreateCategory(name) {
+    if (document.getElementsByClassName(name + "-badges-preview").length > 0) return;
+
+    let content = document.getElementsByClassName("custom-category")[0];
+
+    let wdiv = document.createElement("div");
+
+    let text = document.createElement("h1");
+    text.innerHTML = name + ":";
+
+    let div = document.createElement("div");
+    div.className = name + "-badges-preview";
+
+    wdiv.appendChild(text);
+    wdiv.appendChild(div);
+    content.appendChild(wdiv);
+
 }
 
 function submitJSON() {
