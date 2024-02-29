@@ -214,20 +214,36 @@ function loadPaints(jsonParam, selectedPaint, username) {
 
     try {
         json.forEach(x => {
+            var paintElement = document.createElement("div");
+            paintElement.style.display = "flex";
+            paintElement.style.justifyContent = "space-between";
+            paintElement.style.alignItems = "center";
+            paintElement.style.minWidth = "7.5rem";
+            paintElement.style.gap = "0.75rem";
+
+
+            var paintCircle = document.createElement("div");
+            paintCircle.style.width = "1.5rem";
+            paintCircle.style.height = "1.5rem";
+            paintCircle.style.borderRadius = "50%";
+            paintElement.appendChild(paintCircle);
+
             var paintBackground = document.createElement("div");
             paintBackground.className = "paint-background";
 
+            
             if (selectedPaint !== undefined && x["paintId"] == selectedPaint["id"])
-                paintBackground.id = "selected";
-
+            paintBackground.id = "selected";
+        
             var paintUsername = document.createElement("p");
             paintUsername.className = "paint-username";
             paintUsername.addEventListener("click", () => {
                 window.location.href = "/PaintPreview/?id=" + x["paintId"];
             }, false);
-
+        
             paintBackground.appendChild(paintUsername);
-            document.getElementsByClassName("paints-preview")[0].appendChild(paintBackground);
+            paintElement.appendChild(paintBackground);
+            document.getElementsByClassName("paints-preview")[0].appendChild(paintElement);
             if (username !== null)
                 paintUsername.textContent = username;
             else
@@ -257,6 +273,8 @@ function loadPaints(jsonParam, selectedPaint, username) {
 
             paintBackground.style["background-image"] = `${gradientStyle}`;
             paintBackground.style["filter"] = `${shadowStyle}`;
+            paintCircle.style.backgroundImage = gradientStyle;
+            paintCircle.style.filter = shadowStyle;
             console.log(shadowStyle); console.log(gradientStyle);
         });
 
