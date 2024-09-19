@@ -24,6 +24,8 @@ function generateRandomUUID() {
 }
 
 async function main() {
+    setOEmbedLink();
+
     const urlParams = new URLSearchParams(window.location.search);
     const nickParam = urlParams.get('username');
     jsonParam = urlParams.get('json');
@@ -114,6 +116,17 @@ async function main() {
     }
 
     loadPaint(jsonParam, nickParam);
+}
+
+function setOEmbedLink() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paintId = urlParams.get('id');
+    if (paintId) {
+        const oembedLink = `https://turteg.luki3507.pl/v1/paints/oembed?id=${paintId}`;
+        document.getElementById('oembedLink').setAttribute('href', oembedLink);
+    } else {
+        console.error('No paint ID found in URL.');
+    }
 }
 
 function loadPaint(jsonParam, username) {
